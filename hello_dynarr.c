@@ -17,7 +17,11 @@ int main() {
     while (1) {
         char c = getchar();
         if (c == EOF || isspace(c)) { break; }
-        dynarr_append(&a, &c);
+        if (dynarr_append(&a, &c) == NULL) {
+            fprintf(stderr, "Ran out of memory...\n");
+            dynarr_free(&a);
+            return;
+        }
     }
     dynarr_append_n(&a, 2, "!"); // "hello, _name_!"
     printf("%s\n", (char*)a.arr);
