@@ -96,6 +96,13 @@ void test_remove_pop() {
     assert(a.len == 2);
     assert(is_arr_eq(a.arr, target4, a.len));
 
+    dynarr_swap_remove_n(&a, 1, 5); // Try removing more items than are present
+    assert(a.len == 1);
+    assert(is_arr_eq(a.arr, target4, 1));
+
+    dynarr_remove(&a, 0);
+    assert(a.len == 0);
+
     dynarr_free(&a);
 }
 

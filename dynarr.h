@@ -71,7 +71,9 @@ void dynarr_remove_n(DynArr *arr, size_t idx, size_t n);
 void dynarr_pop_n(DynArr *arr, size_t n);
 #define dynarr_pop(arr) dynarr_pop_n((arr), 1)
 
-// Removes one item from the array at idx, moving the last item into its place.
+// Removes n items from the array at idx, moving the last n items into the gap.
+// This can be faster than a regular remove when the removed items are concentrated at the beginning of the list.
+// Note that this breaks the ordering of items in the list.
 void dynarr_swap_remove_n(DynArr *arr, size_t idx, size_t n);
 #define dynarr_swap_remove(arr, idx) dynarr_swap_remove_n((arr), (idx), 1)
 
