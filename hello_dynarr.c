@@ -20,7 +20,7 @@ int main() {
         if (dynarr_append(&a, &c) == NULL) {
             fprintf(stderr, "Ran out of memory...\n");
             dynarr_free(&a);
-            return;
+            return 1;
         }
     }
     dynarr_append_n(&a, 2, "!"); // "hello, _name_!"
