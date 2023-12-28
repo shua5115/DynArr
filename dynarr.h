@@ -59,7 +59,7 @@ void *dynarr_append_n(DynArr *arr, size_t n, const void *items);
 
 // Inserts n items inside the array, shifting items to the right to make space.
 // Returns the address of the insertion. Returns NULL if unsuccessful.
-// If items is NULL, then n new items are allocated in the array uninitialized.
+// If items is NULL, then n new items are allocated in the array as zeros.
 void *dynarr_insert_n(DynArr *arr, size_t idx, size_t n, const void *items);
 #define dynarr_insert(arr, idx, item) dynarr_insert_n((arr), (idx), 1, (item))
 
