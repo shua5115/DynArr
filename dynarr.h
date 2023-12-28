@@ -169,7 +169,6 @@ void dynarr_remove_n(DynArr *arr, size_t idx, size_t n) {
 }
 
 void dynarr_pop_n(DynArr *arr, size_t n) {
-    if(arr->len == 0) { return; }
     if(n >= arr->len) {
         arr->len = 0;
     } else {
