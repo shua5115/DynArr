@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <ctype.h>
 
 #define DYNARR_IMPLEMENTATION
 #include "dynarr.h"
@@ -12,13 +13,14 @@ int main() {
     printf("%s\n", (char*)a.arr);
 
     dynarr_pop_n(&a, 7); // "hello, 
-    if(dynarr_reserve(&a, 1024)) { // Allocate a lot more space for whatever the user will input
-        char buf[1024] = {0};
-        printf("Enter your name: ");
-        scanf("%s", buf);
-        dynarr_append_n(&a, strlen(buf), buf);
-        dynarr_append_n(&a, 2, "!"); // "hello, _name_!"
-        printf("%s\n", (char*)a.arr);
+    printf("Enter your name: ");
+    while (1) {
+        char c = getchar();
+        if (c == EOF || isspace(c)) { break; }
+        dynarr_append(&a, &c);
     }
+    dynarr_append_n(&a, 2, "!"); // "hello, _name_!"
+    printf("%s\n", (char*)a.arr);
+    printf("Length: %ld, Capacity: %ld\n", a.len, a.cap);
     dynarr_free(&a);
 }
